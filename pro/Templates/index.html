@@ -1,0 +1,682 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/RecipeLogo.jpeg" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/message.js' %}"></script>
+    <title>Express Eat</title>
+</head>
+<body>
+
+    <!--- Navigation Bar -->
+    <div class="header">
+        <nav class="nav-bar">
+            <img src="{% static 'img/Logo.png'%}" class="brand-name">
+            <a href="#" class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </a>
+            <div class="menu-bar">
+                <ul>
+                    <li><a href="signup.html">Sign Up</a></li>
+                    <li><a href="land.html">Login</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        {% for message in messages %}
+                                <div class="alert alert-{{message.tags}}warning alert-dismissible fade show" role="alert">
+                                  <strong></strong> {{message}}
+                                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+        {% endfor %}
+        
+        <!-- Search Bar -->
+        <div class="title">Find a Recipe</div>
+        <div class="search-wrapper">
+            <div class="fa fa-search"></div>
+            <input type="text" name=""  id="search" placeholder="What do you want to eat?" onkeyup="search()">
+            <div class="fa fa-times" onclick="clearInput()" ></div>
+        </div>
+    </div>
+
+    <!-- Search Results -->
+        <div class="result">
+            <h1>Your Search Result: </h1>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="card-grid" >
+            <div class="food-list" id="food-list">
+                    <p id="none" style="display: none;">Sorry, the food you were looking for was not available.</p>
+                    <div class="card card-shadow">
+                        <div class="card-header card-image">
+                            <img src="{% static 'img/biriyani-spl.webp'%}">
+                        </div>
+                        <div class="card-body" >
+                        <h3> BIRIYANI </h3>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn" onclick="getRecipeDetails()">Get Recipe</button>
+                        </div>
+                    </div>
+                    <div class="card card-shadow">
+                        <div class="card-header card-image">
+                            <img src="{% static 'img/puttu.webp.jpg'%}">
+                        </div>
+                        <div class="card-body" >
+                        <h3> PUTTU KADALACURRY </h3>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn" onclick="get2ndRecipe()">Get Recipe</button>
+                        </div>
+                    </div>
+                    <div class="card card-shadow">
+                        <div class="card-header card-image">
+                            <img src="{% static 'img/tan.jpeg.jpeg'%}">
+                        </div>
+                        <div class="card-body" >
+                            <h3>CHICKEN TANDOORI</h3>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn" onclick="get3rdRecipe()">Get Recipe</button>
+                        </div>
+                    </div>
+                    <div class="card card-shadow">
+                        <div class="card-header card-image">
+                            <img src="{% static 'img/Omelette.webp'%}">
+                        </div>
+                        <div class="card-body" >
+                            <h3>OMELETTE</h3>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn" onclick="get4thRecipe()">Get Recipe</button>
+                        </div>
+                    </div>
+                    <div class="card card-shadow">
+                        <div class="card-header card-image">
+                            <img src="{% static 'img/FR.jpeg'%}">
+                        </div>
+                        <div class="card-body" >
+                        <h3> FRIED RICE</h3>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn" onclick="get5thRecipe()">Get Recipe</button>
+                        </div>
+                    </div>
+                    <div class="card card-shadow">
+                        <div class="card-header card-image">
+                            <img src="{% static 'img/mas.jpeg'%}">
+                            
+                        </div>
+                        <div class="card-body" >
+                        <h3> PANNER BUTTER MASALA</h3>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn" onclick="get6thRecipe()">Get Recipe</button>
+                        </div>
+                    </div>
+                    <div class="card card-shadow">
+                        <div class="card-header card-image">
+                        <img src="{% static 'img/fish.jpeg'%}">  
+                        </div>
+                        <div class="card-body" >
+                        <h3> KAREMEEN</h3>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn" onclick="get7thRecipe()">Get Recipe</button>
+                        </div>
+                    </div>
+                    <div class="card card-shadow">
+                        <div class="card-header card-image">
+                        <img src="{% static 'img/Burger.webp'%}">    
+                        </div>
+                        <div class="card-body" >
+                        <h3>Chicken Burger</h3>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn" onclick="get8thRecipe()">Get Recipe</button>
+                        </div>
+                    </div>
+                    <div class="card card-shadow">
+                        <div class="card-header card-image">
+                        <img src="{% static 'img/pb.jpeg'%}">    
+                        </div>
+                        <div class="card-body" >
+                        <h3>PARATTO BEEF</h3>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn" onclick="get9thRecipe()">Get Recipe</button>
+                        </div>
+                    </div>
+                    <div class="card card-shadow">
+                        <div class="card-header card-image">
+                        <img src="{% static 'img/PRAWN.jpeg'%}">    
+                        </div>
+                        <div class="card-body" >
+                        <h3>PRAWN ROAST</h3>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn" onclick="get10thRecipe()">Get Recipe</button>
+                        </div>
+                    </div>
+                    <div class="card card-shadow">
+                        <div class="card-header card-image">
+                        <img src="{% static 'img/PON.jpeg'%}"> 
+                        </div>
+                        <div class="card-body" >
+                        <h3>PONGAL</h3>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn" onclick="get11thRecipe()">Get Recipe</button>
+                        </div>
+                    </div>
+            </div> 
+
+            <!--Ending of Main Content-->
+
+            <!--Recipe Details-->
+            <div class = "meal-detail" id="meal-detail">
+                <!-- recipe close btn -->
+                <button type = "button" class = "btn recipe-close-btn" id = "recipe-close-btn" onclick="closeBtn()">
+                    <i class ="fas fa-times"></i>
+                </button>
+
+                <!-- recipe details -->
+                <div class="meal-content">
+                    <h2 class="meal-name">BIRIYANI</h2>
+                    <div class="meal-about">
+                        <h3 class="meal-title-about">About Meal</h3>
+                        <p class="meal-descript-about">Biryani is a beloved and iconic South Asian rice dish known for its aromatic flavors and rich history. It originated in the Indian subcontinent, and its roots can be traced back to various regions and cultures. The history of biryani is a fascinating blend of culinary influences, traditions, and cultural exchanges.</p>
+                    </div>
+                    <div class = "meal-instruct">
+                        <h3>Ingredients:</h3>
+                        <p><br>2 cups basmati rice
+                            <br>1 lb (450g) chicken, lamb, or vegetables
+                            <br>2 large onions, thinly sliced
+                            <br>1/2 cup plain yogurt
+                            <br>2-3 tomatoes, chopped
+                            <br>1/4 cup cooking oil or ghee
+                            <br>2 tsp biryani masala
+                            <br>1 tsp red chili powder
+                            <br>1/2 tsp turmeric powder
+                            <br>1/2 tsp cumin seeds
+                            <br>4-6 green cardamom pods
+                            <br>6 cups water
+                            <br> 1 cinnamon stick
+                            <br>1/2 teaspoon salt
+                            <br> 1 piece egg (optional)
+                        </p>
+                        <h3>Instruction:</h3>
+                        <p><br>Rinse the basmati rice in cold water until the water runs clear. Soak the rice in water for about 30 minutes, then drain.
+                            <br>Marinate the chicken, lamb, or vegetables with yogurt, biryani masala, red chili powder, turmeric powder, and a pinch of salt. Let it marinate for at least 30 minutes.
+                            <br>Heat oil or ghee in a large pot. Add sliced onions and fry until they turn golden brown and crispy. Remove half of the fried onions for later garnishing.
+                            <br>In the same pot, add cumin seeds, cardamom pods, cloves, bay leaves, and cinnamon stick. Sauté until fragrant.
+                            <br>Add chopped tomatoes and cook until they turn soft and the oil starts to separate.
+                            <br>Add the marinated meat or vegetables and cook until they are partially cooked.
+                            <br>In a separate pot, bring water to a boil. Add the soaked and drained rice along with some salt. Parboil the rice for about 5-6 minutes until it's about 70% cooked. Drain the rice.
+                            <br>Cover the pot with a tight-fitting lid. You can also seal the lid with dough to trap the steam.
+                            <br>Place the pot on low heat and cook for about 20-25 minutes. This allows the flavors to meld together and the rice to fully cook.
+        
+                            <br>Serve hot. Share and Enjoy </p>
+                
+                    </div>
+                    <div class = "meal-img">
+                        <img src="{% static 'img/biriyani-spl.webp'%}">
+                      </div>
+                      <div class = "meal-link">
+                        <a href="https://youtu.be/95BCU1n268w?feature=shared" class="meal-link-btn">Watch Video</a>
+                    </div>
+                </div>
+            </div>
+            <div class = "second-meal-detail" id="second-meal-detail">
+                <!-- recipe close btn -->
+                <button type = "button" class = "btn recipe-close-btn" id = "recipe-close-btn" onclick="closeBtn()">
+                    <i class ="fas fa-times"></i>
+                </button>
+
+                <!-- recipe details -->
+                <div class="meal-content">
+                    <h2 class="meal-name">PUTTUM KADALACURRY</h2>
+                    <div class="meal-about">
+                        <h3 class="meal-title-about">About Meal</h3>
+                        <p class="meal-descript-about">Kadala curry, also known as black chickpea curry, is a flavorful and spicy dish from the South Indian state of Kerala. It's a popular accompaniment to various breakfast dishes like puttu, appam, and idiyappam. Kadala curry is made using dried black chickpeas cooked in a fragrant blend of spices, coconut, and onions.  </p>
+                    </div>
+                    <div class = "meal-instruct">
+                        <h3>Ingridients:</h3>
+                        <p><br>2 cups rice flour
+                            <br>Water
+                            <br>Salt to taste
+                            <br>Grated coconut (optional)
+                            
+                        </p>
+                        <h3>Instruction:</h3>
+                        <p><br>1. You can use store-bought rice flour or prepare it at home. If preparing at home, wash and soak raw rice for a few hours. Drain, dry, and grind it to a fine powder.
+                            <br>2.In a large mixing bowl, take the rice flour and add a pinch of salt. Gradually add water while mixing with your hands. Mix until the flour resembles a crumbly texture.
+                            <br>3. Steam the puttu for about 10-15 minutes until cooked..
+                            <br>4. Once cooked, gently push the puttu out from the puttu maker or container onto a plate. The puttu should have a cylindrical shape with layers of grated coconut.
+                            
+                            </p>
+                
+                    </div>
+                    <div class = "meal-img">
+                    <img src="{% static 'img/puttu.webp.jpg'%}"> 
+                      </div>
+                      <div class = "meal-link">
+                        <a href="https://youtu.be/Isu2GuDYw7E?feature=shared" class="meal-link-btn" >Watch Video</a>
+                    </div>
+                </div>
+            </div>  
+            <div class = "third-meal-detail" id="third-meal-detail">
+                <!-- recipe close btn -->
+                <button type = "button" class = "btn recipe-close-btn" id = "recipe-close-btn" onclick="closeBtn()">
+                    <i class ="fas fa-times"></i>
+                </button>
+
+                <!-- recipe details -->
+                <div class="meal-content">
+                    <h2 class="meal-name">CHICKEN TANDOORI</h2>
+                    <div class="meal-about">
+                        <h3 class="meal-title-about">About Meal</h3>
+                        <p class="meal-descript-about">Chicken Tandoori is a popular Indian dish known for its vibrant red color, smoky flavor, and aromatic spices. It's made by marinating chicken pieces in a mixture of yogurt and spices, and then cooking them in a tandoor (clay oven) or in a conventional oven
+                        </p>
+                    </div>
+                    <div class = "meal-instruct">
+                        <h3>Ingridients:</h3>
+                        <p><br>2 lbs (about 1 kg) chicken pieces
+                            <br>1 cup plain yogurt
+                            <br>2 tablespoons lemon juice
+                            <br>2 tablespoons vegetable oil
+                            <br>2 tablespoons tandoori masala (store-bought or homemade)
+                            <br>1 teaspoon turmeric powder
+                            <br>1 teaspoon ground cumin
+                            <br>1/2 teaspoon garam masala
+                            <br>Salt to taste
+                        </p>
+                        <h3>Instruction:</h3>
+                        <p><br>1.In a bowl, mix yogurt, lemon juice, vegetable oil, tandoori masala, ginger-garlic paste, red chili powder, turmeric powder, ground cumin, ground coriander, garam masala, and salt. The marinade should be well-mixed and smooth. 
+                            2. Coat the chicken pieces thoroughly with the marinade. Make sure the marinade gets into the cuts as well. You can use your hands to rub the marinade onto the chicken.
+                            3. If you have access to a tandoor or a grill, you can cook the chicken over high heat. Skewer the marinated chicken pieces and cook them, turning occasionally, until they are cooked through and have a nice char.
+                            4. Serve. Share and enjoy!
+                            </p>
+                
+                    </div>
+                    <div class = "meal-img">
+                        <img src="{% static 'img/tan.jpeg.jpeg'%}">
+                      </div>
+                      <div class = "meal-link">
+                        <a href="https://youtu.be/-CKvt1KNU74?feature=shared" class="meal-link-btn" >Watch Video</a>
+                    </div>
+                </div>
+            </div>  
+            <div class = "four-meal-detail" id="four-meal-detail">
+                <!-- recipe close btn -->
+                <button type = "button" class = "btn recipe-close-btn" id = "recipe-close-btn" onclick="closeBtn()">
+                    <i class ="fas fa-times"></i>
+                </button>
+
+                <!-- recipe details -->
+                <div class="meal-content">
+                    <h2 class="meal-name">Omelette</h2>
+                    <div class="meal-about">
+                        <h3 class="meal-title-about">About Meal</h3>
+                        <p class="meal-descript-about">In cuisine, an omelette is a dish made from beaten eggs, fried with butter or oil in a frying pan. It is quite common for the omelette to be folded around fillings such as chives, vegetables, mushrooms, meat, cheese, onions or some combination of the above. 
+                        </p>
+                    </div>
+                    <div class = "meal-instruct">
+                        <h3>Ingridients:</h3>
+                        <p><br>3 eggs, beaten
+                            <br>1 tsp sunflower oil
+                            <br>1 tsp butter
+                        </p>
+                        <h3>Instruction:</h3>
+                        <p><br>1. Beat the eggs: Use two or three eggs per omelette, depending on how hungry you are. Beat the eggs lightly with a fork.
+                            2. Melt the butter: Use an 8-inch nonstick skillet for a 2-egg omelette, a 9-inch skillet for 3 eggs. Melt the butter over medium-low heat, and keep the temperature low and slow when cooking the eggs so the bottom doesn’t get too brown or overcooked.
+                            3. Add the eggs: Let the eggs sit for a minute, then use a heatproof silicone spatula to gently lift the cooked eggs from the edges of the pan. Tilt the pan to allow the uncooked eggs to flow to the edge of the pan.
+                            4. Fill the omelette: Add the filling—but don’t overstuff the omelette—when the eggs begin to set. Cook for a few more seconds
+                            5. Fold and serve: Fold the omelette in half. Slide it onto a plate with the help of a silicone spatula.
+                        </p>
+                
+                    </div>
+                    <div class = "meal-img">
+                        <img src="{% static 'img/Omelette.webp'%}">
+                      </div>
+                      <div class = "meal-link">
+                        <a href="https://tinyurl.com/bde4yd4u" class="meal-link-btn" >Watch Video</a>
+                    </div>
+                </div>
+            </div>  
+            <div class = "five-meal-detail" id="five-meal-detail">
+                <!-- recipe close btn -->
+                <button type = "button" class = "btn recipe-close-btn" id = "recipe-close-btn" onclick="closeBtn()">
+                    <i class ="fas fa-times"></i>
+                </button>
+
+                <!-- recipe details -->
+                <div class="meal-content">
+                    <h2 class="meal-name">FRIED RICE</h2>
+                    <div class="meal-about">
+                        <h3 class="meal-title-about">About Meal</h3>
+                        <p class="meal-descript-about">Fried rice is a versatile and popular dish that originated in Chinese cuisine but has become a staple in many Asian cuisines. It's made by stir-frying cooked rice with various ingredients such as vegetables, meat, seafood, and seasonings. 
+                        </p>
+                    </div>
+                    <div class = "meal-instruct">
+                        <h3>Ingridients:</h3>
+                        <p><br>Cooked rice
+                            <br>Vegetables 
+                            <br>Protein 
+                            <br>Eggs
+                            <br>Garlic and/or ginger
+                            <br>Soy sauce
+                            <br>Oyster sauce
+                            <br>Sesame oiL
+                            
+                        </p>
+                        <h3>Instruction:</h3>
+                        <p><br>1. Start by preparing all your ingredients. Dice the vegetables, protein, and any other additions you'd like to include.
+                            <br>2. If you're using raw protein like chicken, shrimp, or beef, cook it first in a hot pan with a bit of oil. Once cooked, remove it from the pan and set it aside.
+                            <br>3.Beat the eggs in a bowl and scramble them in the pan with a bit of oil. Once cooked, remove them from the pan and set them aside.
+                            <br>4. Add the cooked and cooled rice to the pan. Break up any clumps and stir-fry the rice with the vegetables.
+            
+                            <br>10. Serve hot. Share and enjoy!
+                        </p>
+                
+                    </div>
+                    <div class = "meal-img">
+                        <img src="{% static 'img/FR.jpeg'%}">
+                      </div>
+                      <div class = "meal-link">
+                        <a href="https://youtu.be/6lTV0CoclK4?feature=shared" class="meal-link-btn" >Watch Video</a>
+                    </div>
+                </div>
+            </div> 
+            <div class = "six-meal-detail" id="six-meal-detail">
+                <!-- recipe close btn -->
+                <button type = "button" class = "btn recipe-close-btn" id = "recipe-close-btn" onclick="closeBtn()">
+                    <i class ="fas fa-times"></i>
+                </button>
+
+                <!-- recipe details -->
+                <div class="meal-content">
+                    <h2 class="meal-name">PANNER BUTTER MASALA</h2>
+                    <div class="meal-about">
+                        <h3 class="meal-title-about">About Meal</h3>
+                        <p class="meal-descript-about">Paneer Butter Masala, also known as Paneer Makhani, is a popular North Indian dish that features cubes of paneer (Indian cottage cheese) cooked in a rich and creamy tomato-based gravy. 
+                        </p>
+                    </div>
+                    <div class = "meal-instruct">
+                        <h3>Ingridients:</h3>
+                        <p><br>200g paneer, cut into cubes
+                            <br>1/2 teaspoon red chili powder
+                            <br>/4 teaspoon turmeric powder
+                            <br>Salt to taste
+                            <br>2 tomatoes, blanched and puréed
+                            <br>1 1/2 teaspoons garlic powder
+                            <br>1/2 teaspoon ground black pepper
+                            <br>1/2 cup parsley chopped
+                            <br>1 1/2 teaspoons salt
+                            <br>1 tablespoon sesame oil
+                            <br>2 eggs
+                        </p>
+                        <h3>Instruction:</h3>
+                        <p><br>1. In a bowl, mix red chili powder, turmeric powder, and salt. Toss the paneer cubes in this mixture and let them marinate for about 15-20 minutes..
+                            <br>2. Add ginger-garlic paste and sauté until the raw smell disappears.
+                            <br>3. Add red chili powder, coriander powder, garam masala, and salt. Mix well and cook for a couple of minutes.
+                            <br>4. Remove from the pot. Let excess oil drip. Serve. Share and enjoy
+                        </p>
+                
+                    </div>
+                    <div class = "meal-img">
+                        <img src="{% static 'img/mas.jpeg'%}">
+                      </div>
+                      <div class = "meal-link">
+                        <a href="https://youtu.be/U1LVDFwi8qI?feature=shared" class="meal-link-btn" >Watch Video</a>
+                    </div>
+                </div>
+            </div> 
+            <div class = "seven-meal-detail" id="seven-meal-detail">
+                <!-- recipe close btn -->
+                <button type = "button" class = "btn recipe-close-btn" id = "recipe-close-btn" onclick="closeBtn()">
+                    <i class ="fas fa-times"></i>
+                </button>
+
+                <!-- recipe details -->
+                <div class="meal-content">
+                    <h2 class="meal-name">KAREMEEN</h2>
+                    <div class="meal-about">
+                        <h3 class="meal-title-about">About Meal</h3>
+                        <p class="meal-descript-about">Karimeen is a popular and prized fish found in the backwaters and freshwater bodies of the Indian state of Kerala, especially in the region known as "Kuttanad." It is often considered a delicacy in Kerala cuisine.
+                        </p>
+                    </div>
+                    <div class = "meal-instruct">
+                        <h3>Ingridients:</h3>
+                        <p><br>1 ¾ lbs. ground fish
+                            <br>9 tablespoons dark brown sugar
+                            <br>1 tablespoon smoked paprika
+                            <br>3 tablespoons vegetable oil
+                            <br>1 ¼ tablespoons coarse salt
+                            <br>1 teaspoon ground black pepper
+                            <br>2 head garlic
+                        </p>
+                        <h3>Instruction:</h3>
+                        <p><br>1. Make a few diagonal slits on both sides of the fish. This helps the marinade to penetrate and also ensures even cooking.
+                            <br>2.In a bowl, mix red chili powder, turmeric powder, black pepper powder, fennel seeds, cumin powder, salt, and lemon juice to form a paste. You can adjust the spice levels according to your preference.
+                            <br>3. Fry the fish for about 4-5 minutes on each side or until they turn golden brown and crispy. Be gentle when flipping the fish to prevent the skin from tearing.
+                            
+                            <br>4.  Share and enjoy!
+                        </p>
+                
+                    </div>
+                    <div class = "meal-img">
+                        <img src="{% static 'img/fish.jpeg'%}"> 
+                      </div>
+                      <div class = "meal-link">
+                        <a href="https://youtu.be/sdN-OBtZ8tw?feature=shared" class="meal-link-btn" >Watch Video</a>
+                    </div>
+                </div>
+            </div> 
+            <div class = "eight-meal-detail" id="eight-meal-detail">
+                <!-- recipe close btn -->
+                <button type = "button" class = "btn recipe-close-btn" id = "recipe-close-btn" onclick="closeBtn()">
+                    <i class ="fas fa-times"></i>
+                </button>
+
+                <!-- recipe details -->
+                <div class="meal-content">
+                    <h2 class="meal-name">Chicken Burger</h2>
+                    <div class="meal-about">
+                        <h3 class="meal-title-about">About Meal</h3>
+                        <p class="meal-descript-about">Prepare the buns! For the ideal stuffing for juicy burgers, coat or marinate chicken thighs and breast. Dig it after adding toppings like slaw and sauce along with your selected side dishes.
+                        </p>
+                    </div>
+                    <div class = "meal-instruct">
+                        <h3>Ingridients:</h3>
+                        <p><br>3 boneless chicken breasts (around half a kg)
+                            <br>1 tspn of pepper
+                            <br>1 tspn of salt
+                            <br>2 tblspns of worcestershire sauce
+                            <br>1 tspn of Mustard powder or all spice powder
+                            <br>2 tblspns of Flour
+                            <br>1 Egg
+                            <br>1 1/2 cups of Breadcrumbs
+                            <br>Soft seeded burger buns
+                            <br>Mayonnaise or KFC Zinger Sauce
+                        </p>
+                        <h3>Instruction:</h3>
+                        <p><br>1. If your chicken breasts are too big, slice them before cooking. Then, marinade the chicken breasts in the Worcestershire sauce, pepper, salt, mustard, or all-spice powder. Leave the chicken for at least four hours or over night.
+                            <br>2. An egg and two tablespoons of water should be beaten together to make the batter, which should then be set aside.
+                            <br>3. Chicken breasts that have been marinated should be heavily dusted in flour. They should be well coated after being dipped in both the egg and the breadcrumbs.
+                            <br>4. The coated chicken breasts should be deep-fried in heated oil over a medium-high heat until they are crisp and golden brown.
+                            <br>5. The finished burger should be stacked with the lettuce on top, followed by the chicken, and then the mayonnaise or KFC zinger sauce. The buns should be cut in half and lightly toasted. If you'd like a cheesy kick, add some sliced American cheese.
+                        </p>
+                
+                    </div>
+                    <div class = "meal-img">
+                        <img src="{% static 'img/Burger.webp'%}">   
+                      </div>
+                      <div class = "meal-link">
+                        <a href="https://tinyurl.com/td757uct" class="meal-link-btn" >Watch Video</a>
+                    </div>
+                </div>
+            </div> 
+            <div class = "nine-meal-detail" id="nine-meal-detail">
+                <!-- recipe close btn -->
+                <button type = "button" class = "btn recipe-close-btn" id = "recipe-close-btn" onclick="closeBtn()">
+                    <i class ="fas fa-times"></i>
+                </button>
+
+                <!-- recipe details -->
+                <div class="meal-content">
+                    <h2 class="meal-name">PARATTO BEEF</h2>
+                    <div class="meal-about">
+                        <h3 class="meal-title-about">About Meal</h3>
+                        <p class="meal-descript-about">a delicious and popular dish that combines parathas (Indian flatbreads) with a flavorful beef roast. This dish is often enjoyed in South Indian and Kerala cuisines
+                        </p>
+                    </div>
+                    <div class = "meal-instruct">
+                        <h3>Ingridients:</h3>
+                        <p><br>500g beef, cut into bite-sized pieces
+                            <br>1 large onion, thinly sliced
+                            <br>2 tomatoes, chopped
+                            <br>1 teaspoon garam masala
+                            <br>1 teaspoon coriander powder
+                            <br>1/2 teaspoon cumin powder
+                            
+                        </p>
+                        <h3>Instruction:</h3>
+                        <p><br>In a bowl, marinate the beef pieces with ginger-garlic paste, red chili powder, turmeric powder, garam masala, coriander powder, cumin powder, and salt. Let it marinate for at least 30 minutes.
+                           <br>Add the marinated beef and cook until it's browned and seared on all sides.
+                           <br>Add curry leaves and enough water to cover the beef. Close the pressure cooker and cook until the beef is tender (around 20-30 minutes, depending on the cut of beef).
+                           
+                        </p>
+                
+                    </div>
+                    <div class = "meal-img">
+                        <img src="{% static 'img/pb.jpeg'%}">    
+                      </div>
+                      <div class = "meal-link">
+                        <a href="https://youtu.be/I2BoKVPMjuI?feature=shared" class="meal-link-btn" >Watch Video</a>
+                    </div>
+                </div>
+            </div> 
+            <div class = "ten-meal-detail" id="ten-meal-detail">
+                <!-- recipe close btn -->
+                <button type = "button" class = "btn recipe-close-btn" id = "recipe-close-btn" onclick="closeBtn()">
+                    <i class ="fas fa-times"></i>
+                </button>
+
+                <!-- recipe details -->
+                <div class="meal-content">
+                    <h2 class="meal-name">PRAWN ROAST</h2>
+                    <div class="meal-about">
+                        <h3 class="meal-title-about">About Meal</h3>
+                        <p class="meal-descript-about">Prawn Roast is a popular dish in South Indian and Kerala cuisine. It features succulent prawns that are marinated with a blend of aromatic spices, roasted or sautéed until they are well-cooked and coated with a flavorful sauce.
+                        </p>
+                    </div>
+                    <div class = "meal-instruct">
+                        <h3>Ingridients:</h3>
+                        <p><br> 500g prawns, cleaned and deveined
+                            <br>1 large onion, thinly sliced
+                            <br>2 tomatoes, chopped
+                            <br><b>1 tablespoon red chili powder (adjust to taste)</b>
+                            <br>1/2 teaspoon fennel seeds (saunf)
+                            
+                        </p>
+                        <h3>Instruction:</h3>
+                        <p><br>1. In a bowl, combine prawns with ginger-garlic paste, red chili powder, turmeric powder, coriander powder, and salt. Mix well and let it marinate for about 20-30 minutes.
+                            <br>2.Add the marinated prawns and sauté until they turn pink and are cooked through. This usually takes around 4-5 minutes. Remove the prawns and set them aside.
+                            <br>3.Roast the prawns in the pan, stirring occasionally, until they are coated with the spices and the flavors meld together. This usually takes a few minutes. 
+                            
+                        </p>
+                
+                    </div>
+                    <div class = "meal-img">
+                        <img src="{% static 'img/PRAWN.jpeg'%}">
+                      </div>
+                      <div class = "meal-link">
+                        <a href="https://youtu.be/-v3hA25PnJI?feature=shared" class="meal-link-btn" >Watch Video</a>
+                    </div>
+                </div>
+            </div> 
+            <div class = "eleven-meal-detail" id="four-meal-detail">
+                <!-- recipe close btn -->
+                <button type = "button" class = "btn recipe-close-btn" id = "recipe-close-btn" onclick="closeBtn()">
+                    <i class ="fas fa-times"></i>
+                </button>
+
+                <!-- recipe details -->
+                <div class="meal-content">
+                    <h2 class="meal-name">PONGAL</h2>
+                    <div class="meal-about">
+                        <h3 class="meal-title-about">About Meal</h3>
+                        <p class="meal-descript-about">"Pongal" is a traditional South Indian dish that is commonly prepared and enjoyed during the harvest festival of the same name, which is celebrated in the Indian state of Tamil Nadu.
+                    </div>
+                    <div class = "meal-instruct">
+                        <h3>Ingridients:</h3>
+                        <p><br>1 cup raw rice
+                            <br>1/4 cup split yellow moong dal (
+                            <br>2 tablespoons ghee (clarified butter)
+                            <br>1/2 teaspoon cumin seeds
+                            <br>A pinch of asafoetida (hing)
+                            <br>1/2 teaspoon black pepper
+                            <br>1/2 teaspoon grated ginger
+                            <br>Few cashews (optional)
+                            <br>Curry leaves
+                            <br>Salt to taste
+                            
+                        </p>
+                        <h3>Instruction:</h3>
+                        <p><br>Wash the rice and lentils together and set aside.
+                            <br>In a pressure cooker, heat ghee. Add cumin seeds and let them splutter.
+                            <br>Add asafoetida, black pepper, grated ginger, and curry leaves. Sauté briefly.
+                            <br>Add water (about 4 cups) and salt. Close the lid of the pressure cooker and cook for 3-4 whistles.
+                            <br>In a separate pan, heat ghee and sauté cashews until they turn golden brown. Add this to the cooked Pongal and mix well.
+                            <br>Serve hot with coconut chutney or sambar.
+                        </p>
+                
+                    </div>
+                    <div class = "meal-img">
+                        <img src="{% static 'img/PON.jpeg'%}"> 
+                      </div>
+                      <div class = "meal-link">
+                        <a href="https://youtu.be/Q80C11HkGBQ?feature=shared" class="meal-link-btn" >Watch Video</a>
+                    </div>
+                </div>
+            </div> 
+            
+            
+        </div>
+            <!--Ending of Recipe Details-->
+
+            <!--Footer-->
+    <div class="footer">
+        <div class="social-btn">
+            
+            <a href="https://www.instagram.com/tiaanmeds/" target="_blank" ><i class="	fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/tianmeds/" target="_blank"><i class="	fab fa-linkedin"></i></a>
+            
+        </div>
+            <div class="quick-bar">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        <p>Copyright &copy; 2023 Jasmi Jome K. All right reserved</p>  
+    </div>
+
+    <!--Ending of Footer-->
+
+<!--Script for Javascript-->
+<script src="{% static 'js/index.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

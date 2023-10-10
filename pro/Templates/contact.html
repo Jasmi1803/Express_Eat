@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/RecipeLogo.jpeg" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <title>Express Eat</title>
+</head>
+<body>
+
+    <!--- Navigation Bar -->
+    <div class="contact-header">
+        <div class="header">
+            <nav class="nav-bar">
+                <img src="{% static 'img/Logo.png'%}" class="brand-name">
+                <a href="#" class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </a>
+                <div class="menu-bar">
+                    <ul>
+                        <li><a href="signup.html">Sign Up</a></li>
+                        <li><a href="land.html">Login</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </nav>
+            {% for message in messages %}
+             <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert" >
+             <strong></strong> {{message}}
+             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+             </div>
+             {% endfor %}
+                <div class="contact-wrapper">
+                    <div class="contact-title">
+                        <h1>Contact Us</h1>
+                    </div>
+                    <div class="subtitle">
+                            <p>You can make any food request on the . Simply submit a request using the form.</p>
+                    </div>
+                    <div class="box">
+                        <!--Form-->
+                        <div class="contact form">
+                            <h3>Send a Request</h3>
+                            <form  method="POST" action="contact.html" >{% csrf_token %}
+                                <div class="formBox">
+                                    <div class="row50">
+                                        <div class="inputBox">
+                                            <label for="name">Name:</label>
+                                            <input type="text" name="name" placeholder="Your Name">
+                                            <small class="error"></small>
+                                        </div>
+                                        <div class="inputBox">
+                                            <label for="name">Phone Number:</label>
+                                            <input type="tel" name="phone" placeholder="Your Mobile Number">
+                                            <small class="error"></small>
+                                        </div>
+                                        <div class="inputBox">
+                                            <label for="email">Email:</label>
+                                            <input type="text" name="email"  placeholder="Your Email">
+                                            <small class="error"></small>
+                                        </div>
+                                    </div>
+                                    <div class="row100">
+                                        <div class="inputBox">
+                                            <label for="message">Message:</label>
+                                            <textarea name="message" placeholder="Your Message"></textarea>
+                                            <small class="error"></small>
+                                        </div>
+                                    </div>
+                                    <div class="row100">
+                                        <div class="d-grid gap-2 mt-4">
+                                            <button class="btn btn-dark" type="submit">Submit</button>
+                                          
+                                          </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!--Info-->
+                        <div class="contact info">
+                            <h3>Contact Information</h3>
+                            <div class="infoBox">
+                                <div>
+                                    <span><ion-icon name="location-outline"></ion-icon></span>
+                                    <p>Coimbatore<br>Tamilnadu</p>
+                                </div>
+                                <div>
+                                    <span><ion-icon name="mail-outline"></ion-icon></span>
+                                    <a href="mailto:jasmijome@gmail.com">jasmijome@gmail.com</a> 
+                                </div>
+                                <div>
+                                    <span><ion-icon name="call-outline"></ion-icon></span>
+                                    <a href="tel:+9345661705">+9345661705</a> 
+                                </div>
+                                <ul class="socMed">
+                                    
+                                    <li><a href=""><ion-icon name="logo-instagram"></ion-icon></a></li>
+                                   
+                                    <li><a href=""><ion-icon name="logo-linkedin"></ion-icon></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--Map-->
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <div class="social-btn">
+            
+            <a href="https://www.instagram.com/tiaanmeds/" target="_blank" ><i class="	fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/tianmeds/" target="_blank"><i class="	fab fa-linkedin"></i></a>
+            
+        </div>
+            <div class="quick-bar">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        <p>Copyright &copy; 2023 Jasmi Jome K. All right reserved</p>  
+    </div>
+    
+<script src="{% static 'js/index.js' %}"></script>
+<script src="{% static 'js/message.js' %}"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
